@@ -33,7 +33,7 @@ public:
     friend class AVLTreeIterator<T>;
     Node<T>* search(const T& key);
     void insert(const T& key);
-    void deleteNode(const T& key);
+    void remove(const T& key);
     void operator =( AVLTree<T> other) {
         root = other.root;
     }
@@ -231,7 +231,7 @@ void AVLTree<T>::insert(const T& key)
     root = insert(root, key);
 }
 template<typename T>
-void AVLTree<T>::deleteNode(const T& key)
+void AVLTree<T>::remove(const T& key)
 {
     root = deleteNode(root, key);
 }
