@@ -12,6 +12,7 @@ public:
 	vector<NodeInterface<T>*> hash_table;
 	void insert(const T& key) override;
 	void remove(const T& key)override;
+	vector<T> get_all_values() override;
 	NodeInterface<T>* search_universal(const T& key)override;
 };
 
@@ -61,6 +62,16 @@ inline void OpenAdressingHash<T>::remove(const T& key)
 	}
 	if (hash_table[temp]->key == key) {
 		hash_table[temp] = nullptr;
+	}
+}
+
+template<typename T>
+inline vector<T> OpenAdressingHash<T>::get_all_values()
+{
+	vector<T> res;
+	for (int i = 0; i < hash_table.size(); i++) {
+		if(hash_table[i])
+		res.push_back(hash_table[i]->key);
 	}
 }
 

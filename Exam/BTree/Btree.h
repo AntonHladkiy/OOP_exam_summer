@@ -45,6 +45,24 @@ public:
 
         // Go to the appropriate child 
         return C[i]->search(k);
+    }
+    
+    void BTreeNode::add_value(vector<T>& res) {
+        int i;
+        for (i = 0; i < n; i++)
+        {
+            // If this is not leaf, then before printing key[i], 
+            // traverse the subtree rooted with child C[i]. 
+            if (leaf == false)
+                C[i]->add_value(res);
+            res.push_back(keys[i]);
+        }
+
+        // Print the subtree rooted with last child 
+        if (leaf == false)
+            C[i]->add_value(res);
+
+
     }// returns NULL if k is not present.  
     // Function to traverse all nodes in a subtree rooted with this node 
     void BTreeNode::traverse()
@@ -140,6 +158,7 @@ public:
     }
     // The main function that inserts a new key in this B-Tree 
     void insert(const T& k) override;
+    vector<T> get_all_values() override;
     NodeInterface<T>* search_universal(const T& k) override {
         if (search(k)) {
             return new NodeInterface<T>(k);
@@ -219,6 +238,14 @@ void BTree<T>::insert(const T& k)
         else  // If root is not full, call insertNonFull for root 
             root->insertNonFull(k);
     }
+}
+
+template<typename T>
+inline vector<T> BTree<T>::get_all_values()
+{
+    vector<T> res;
+    root->add_value(res);
+    return res;
 }
 
 // A utility function to insert a new key in this node 

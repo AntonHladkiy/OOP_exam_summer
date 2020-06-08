@@ -18,10 +18,23 @@ public:
 	void set_container(ContainerStrategy<T>* _strategy) {
 		strategy = _strategy;
 	}
+	vector<T> get_all_values() override;
 	void insert(const T& key) override;
 	void remove(const T& key)override;
 	NodeInterface<T>* search_universal(const T& key)override;
 };
+
+template<typename T>
+inline vector<T> SeparateChaning<T>::get_all_values()
+{
+	vector<T> res;
+	for (int i = 0; i < hash_table.size(); i++) {
+		vector<T> temp=hash_table[i]->get_all_values();
+		for (int j = 0; j < temp.size(); j++) {
+			res.push_back(temp[i]);
+		}
+	}
+}
 
 template<typename T>
 inline void SeparateChaning<T>::insert(const T& key)

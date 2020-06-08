@@ -20,6 +20,7 @@ public:
 	}
 	Node* head;
 	void show();
+	vector<T> get_all_values();
 	void insert(const T& key) override;
 	void remove(const T& key)override;
 	NodeInterface<T>* search_universal(const T& key)override;
@@ -57,6 +58,22 @@ inline void DoubleLinkedList<T>::show()
 		}
 
 	}
+}
+
+template<typename T>
+inline vector<T> DoubleLinkedList<T>::get_all_values()
+{
+	vector<T> res;
+	if (head) {
+		res.push_back(head->key);
+		Node* temp = head->next;
+		while (temp != head) {
+			res.push_back(temp->key);
+			temp = temp->next;
+		}
+
+	}
+	return res;
 }
 
 template<typename T>

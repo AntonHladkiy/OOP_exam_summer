@@ -35,6 +35,7 @@ public:
     
    NodeInterface<T>* search_universal(const T& key) override;
     Node<T>* search(const T& key);
+    vector<T> get_all_values();
      void insert(const T& key) override;
     void remove(const T& key) override;
     void operator =( AVLTree<T> other) {
@@ -239,9 +240,23 @@ Node<T>* AVLTree<T>::search(const T& key)
     return search(root, key);
 }
 template<typename T>
+inline vector<T> AVLTree<T>::get_all_values()
+{
+    vector<T> result;
+    for (auto i = begin(); i != end(); ++i) {
+        result.push_back(*i);
+    }
+    return result;
+}
+template<typename T>
 void AVLTree<T>::insert(const T& key)
 {
-    root = insert(root, key);
+    if(!root)root = insert(root, key);
+    else {
+        if (!search(key)) {
+            root = insert(root, key);
+        }
+    }
 }
 template<typename T>
 void AVLTree<T>::remove(const T& key)
@@ -334,15 +349,17 @@ Node<T>* AVLTree<T>::deleteNode(Node<T>* root, const T& key)
     // If the key to be deleted is smaller  
     // than the root's key, then it lies 
     // in left subtree  
-    if (key < root->key)
+    if (key < root->key) {
         root->left = deleteNode(root->left, key);
-
+        if (root->left) root->left->parent = root;
+    }
     // If the key to be deleted is greater  
     // than the root's key, then it lies  
     // in right subtree  
-    else if (key > root->key)
+    else if (key > root->key) {
         root->right = deleteNode(root->right, key);
-
+        if (root->right) root->right->parent = root;
+    }
     // if key is same as root's key, then  
     // This is the node to be deleted  
     else

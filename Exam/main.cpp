@@ -3,14 +3,21 @@
 #include "List/List.h"
 #include "HashTable/OpenAdressing.h"
 #include "HashTable/SeparateChaining.h"
+#include "Set/Set.h"
+#include "Interface/ContainerStrategy.h"
 int main() {
-	SeparateChaning<int> hash(10);
-	for (int i = 0; i < 100; i++) {
-		(hash).insert(i);
+	Set<int> set1(new AVLTreeContainer<int>);
+	for (int i = 0; i < 10; i++) {
+		set1.insert(i);
 	}
-
-	cout << "   ";
-
+	set1.show();
+	Set<int> set2(new AVLTreeContainer<int>);
+	for (int i = 5; i < 10; i++) {
+		set2.insert(i);
+	}
+	set2.show();
+	Set<int> set3 = set1 / set2;
+	set3.show();
 	/*for (int i = 0; i < 10; i++) {
 		hash.remove(i);
 	};*/
