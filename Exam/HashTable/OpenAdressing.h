@@ -18,15 +18,14 @@ public:
 template<typename T>
 inline void OpenAdressingHash<T>::insert(const T& key)
 {
-	
+	if (search_universal(key)) {
+		return;
+	}
 	int index = get_hash(key);
-	std::cout << key <<" key"<< endl;
-	std::cout << index << endl;
 	int i=1;
 	int temp = index;
 	while (hash_table[temp] != nullptr) {
 		temp = (index + i + i * i) % mod; i++;
-		std::cout << temp << endl;
 		if (i == mod) {
 			break;
 		}
