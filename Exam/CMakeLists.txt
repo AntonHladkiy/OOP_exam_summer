@@ -4,6 +4,6 @@ project(Exam)
 set(CMAKE_CXX_STANDARD 17)
 
 
-add_executable(main main.cpp List/List.h  "HashTable/Hash.h" "HashTable/OpenAdressing.h" "HashTable/SeparateChaining.h" "Interface/Container.h")
+add_executable(main main.cpp List/List.h  "HashTable/Hash.h" "HashTable/OpenAdressing.h" "HashTable/SeparateChaining.h" "Interface/Container.h" "Interface/ContainerStrategy.h")
 target_include_directories(main PRIVATE ./)
 

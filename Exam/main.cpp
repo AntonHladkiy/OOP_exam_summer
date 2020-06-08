@@ -2,12 +2,15 @@
 #include "AVLTree/AVLTree.h"
 #include "List/List.h"
 #include "HashTable/OpenAdressing.h"
+#include "HashTable/SeparateChaining.h"
 int main() {
-	OpenAdressingHash<int> hash(19);
-	for (int i = 0; i < 10; i++) {
-		hash.insert(i);
-	};
-	std::cout << " ";
+	SeparateChaning<int> hash(10);
+	for (int i = 0; i < 100; i++) {
+		(hash).insert(i);
+	}
+
+	cout << "";
+
 	/*for (int i = 0; i < 10; i++) {
 		hash.remove(i);
 	};*/

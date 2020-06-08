@@ -1,8 +1,9 @@
 #pragma once
 #include "../Interface/Container.h"
+#include "../Interface/ContainerStrategy.h"
 #include <functional>
 template <typename T>
-class Hash:Container<T>{
+class Hash:public Container<T>{
 protected:
 	bool enable_two_choice = false;
 	int mod;
@@ -14,6 +15,7 @@ public:
 		std::hash<T*> hash;
 		return hash(&key)%mod;
 	}
+	
 	Hash(int mod_) {
 		mod = mod_;
 	}
@@ -21,3 +23,7 @@ public:
 	virtual void remove(const T& key) = 0;
 	virtual NodeInterface<T>* search_universal(const T& key) = 0;
 };
+int Hash<int>::get_hash(int key) {
+	std::hash<int> hash;
+	return hash(key) % mod;
+}

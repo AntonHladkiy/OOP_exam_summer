@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 template <typename T>
-class DoubleLinkedList {
+class DoubleLinkedList:public Container<T> {
 private:
 	class Node {
 	public:
@@ -20,8 +20,9 @@ public:
 	}
 	Node* head;
 	void show();
-	void insert(T key);
-	void remove(T key);
+	void insert(const T& key) override;
+	void remove(const T& key)override;
+	NodeInterface<T>* search_universal(const T& key)override;
 	Node* search(T key) {
 		if (head) {
 			if (head->key == key) {
@@ -58,10 +59,24 @@ inline void DoubleLinkedList<T>::show()
 	}
 }
 
+template<typename T>
+inline NodeInterface<T>* DoubleLinkedList<T>::search_universal(const T& key)
+{
+	if (search(key)) {
+		return new NodeInterface<T>(key);
+	}
+	else {
+		return nullptr;
+	}
+}
+
 
 template<typename T>
-inline void DoubleLinkedList<T>::insert(T key)
+inline void DoubleLinkedList<T>::insert(const T& key)
 {
+	if (search(key)) {
+		return;
+	}
 	if (!head) {
 		head = new Node(key);
 	} else{
@@ -74,7 +89,7 @@ inline void DoubleLinkedList<T>::insert(T key)
 }
 
 template<typename T>
-inline void DoubleLinkedList<T>::remove(T key)
+inline void DoubleLinkedList<T>::remove(const T& key)
 {
 	if (head) {
 		if (head->key == key) {
