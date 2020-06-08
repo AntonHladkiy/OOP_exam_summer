@@ -4,6 +4,6 @@ project(Exam)
 set(CMAKE_CXX_STANDARD 17)
 
 
-add_executable(main main.cpp AVLTree/AVLTree.cpp BTree/BTree.cpp)
+add_executable(main main.cpp )
 target_include_directories(main PRIVATE ./)
 
