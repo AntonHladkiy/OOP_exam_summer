@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cassert>
+#include "Interface/Container.h"
 using namespace std;
 
 template <typename T>
@@ -25,15 +26,17 @@ public:
 template <typename T>
 class AVLTreeIterator;
 template <typename T>
-class AVLTree {
+class AVLTree:public Container<T> {
 public:
     AVLTree() {
         root = nullptr;
     }
     friend class AVLTreeIterator<T>;
+    
+   NodeInterface<T>* search_universal(const T& key) override;
     Node<T>* search(const T& key);
-    void insert(const T& key);
-    void remove(const T& key);
+     void insert(const T& key) override;
+    void remove(const T& key) override;
     void operator =( AVLTree<T> other) {
         root = other.root;
     }
@@ -219,6 +222,16 @@ Node<T>* AVLTree<T>::leftRotate(Node<T>* x)
     y->height = max(height(y->left),
         height(y->right)) + 1;
     return y;
+}
+template<typename T>
+inline NodeInterface<T>* AVLTree<T>::search_universal(const T& key)
+{
+    if (search(key)) {
+        return new NodeInterface<T>(key);
+    }
+    else {
+        return nullptr;
+    }
 }
 template<typename T>
 Node<T>* AVLTree<T>::search(const T& key)

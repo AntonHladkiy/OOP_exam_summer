@@ -1,7 +1,7 @@
 #ifndef BPLUSTREE_HPP
 #define BPLUSTREE_HPP
 #include<iostream> 
-
+#include "Interface/Container.h"
 using namespace std;
 template <typename T>
 class BTree;
@@ -115,7 +115,7 @@ public:
 };
 
 template <typename T>
-class BTree
+class BTree:public Container<T>
 {
     BTreeNode<T>* root; // Pointer to root node 
     int t;  // Minimum degree 
@@ -132,19 +132,27 @@ public:
         if (root != NULL) root->traverse();
     }
     // The main function that removes a new key in thie B-Tree 
-    void remove(T k);
+    void remove(const T& k) override;
     // function to search a key in this tree 
-    BTreeNode<T>* search(T k)
+    BTreeNode<T>* search(const T& k)
     {
         return (root == NULL) ? NULL : root->search(k);
     }
     // The main function that inserts a new key in this B-Tree 
-    void insert(T k);
+    void insert(const T& k) override;
+    NodeInterface<T>* search_universal(const T& k) override {
+        if (search(k)) {
+            return new NodeInterface<T>(k);
+        }
+        else {
+            return nullptr;
+        }
+    }
 };
 
 
 template<typename T>
-void BTree<T>::remove(T k)
+void BTree<T>::remove(const T& k)
 {
     if (!root)
     {
@@ -171,7 +179,7 @@ void BTree<T>::remove(T k)
     return;
 }
 template<typename T>
-void BTree<T>::insert(T k)
+void BTree<T>::insert(const T& k)
 {
     if (search(k) != nullptr) {
         return;
