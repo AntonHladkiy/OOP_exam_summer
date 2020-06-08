@@ -7,10 +7,11 @@ class SeparateChaning :public Hash<T> {
 private:
 	ContainerStrategy<T>* strategy;
 public:
-	SeparateChaning(int _mod, ContainerStrategy<T>* _strategy= new ListContainer<T>()) :Hash<T>(_mod) {
+	SeparateChaning(int _mod, ContainerStrategy<T>* _strategy = new ListContainer<T>()) :Hash<T>(_mod) {
 		hash_table.resize(mod);
+		strategy = _strategy;
 		for (int i = 0; i < hash_table.size(); i++) {
-			hash_table[i] = strategy->get_container();
+			hash_table[i] = _strategy->get_container();
 		}
 	}
 	vector<Container<T>*> hash_table;
