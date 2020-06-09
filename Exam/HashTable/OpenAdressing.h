@@ -73,7 +73,9 @@ inline vector<T> OpenAdressingHash<T>::get_all_values()
 		if(hash_table[i])
 		res.push_back(hash_table[i]->key);
 	}
+	return res;
 }
+
 
 template<typename T>
 inline NodeInterface<T>* OpenAdressingHash<T>::search_universal(const T& key)

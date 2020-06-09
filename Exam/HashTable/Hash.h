@@ -25,5 +25,5 @@ public:
 };
 int Hash<int>::get_hash(int key) {
 	std::hash<int> hash;
-	return hash(key) % mod;
+	return (hash(key)) % mod;
 }

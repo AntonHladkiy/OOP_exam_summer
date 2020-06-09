@@ -4,6 +4,12 @@ project(Exam)
 set(CMAKE_CXX_STANDARD 17)
 
 
-add_executable(main main.cpp List/List.h  "HashTable/Hash.h" "HashTable/OpenAdressing.h" "HashTable/SeparateChaining.h" "Interface/Container.h" "Interface/ContainerStrategy.h")
+option(BUILD_TESTS "Build tests" ON)
+
+add_executable(main main.cpp)
 target_include_directories(main PRIVATE ./)
 
+if (BUILD_TESTS)
+    add_executable(tests Tests/Test.cpp)
+    target_include_directories(tests PRIVATE ./)
+endif()

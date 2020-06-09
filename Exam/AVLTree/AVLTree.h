@@ -318,7 +318,7 @@ template<typename T>
 Node<T>* AVLTree<T>::search(Node<T>* node, const T& key)
 {
     if (node->key == key) return node;
-    if (node->key > key) {
+    if (node->key < key) {
         if (node->right) {
             return search(node->right, key);
         }

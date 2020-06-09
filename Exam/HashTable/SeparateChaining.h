@@ -34,6 +34,7 @@ inline vector<T> SeparateChaning<T>::get_all_values()
 			res.push_back(temp[i]);
 		}
 	}
+	return res;
 }
 
 template<typename T>
