@@ -5,6 +5,7 @@
 #include "HashTable/SeparateChaining.h"
 #include "Set/Set.h"
 #include "Interface/ContainerStrategy.h"
+#include "Map/Map.h"
 int main() {
 	Set<int> set1(new AVLTreeContainer<int>);
 	for (int i = 0; i < 10; i++) {
@@ -19,6 +20,7 @@ int main() {
 	Set<int> set3=set1^set2;
 	set1.show();
 	set3.show();
+	Map<int, int> map;
 	/*for (int i = 0; i < 10; i++) {
 		hash.remove(i);
 	};*/

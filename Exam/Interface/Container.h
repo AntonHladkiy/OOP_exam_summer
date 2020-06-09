@@ -6,9 +6,22 @@ class Pair {
 	T first;
 	F second;
 public:
+	Pair() {
+		first = T();
+		second = F();
+	}
 	Pair(T _first,F _second) {
 		first = _first;
 		second = _second;
+	}
+	bool operator<(Pair other) {
+		return first < other.first;
+	}
+	bool operator==(Pair other) {
+		return first == other.first;
+	}
+	bool operator>(Pair other) {
+		return first > other.first;
 	}
 };
 template <typename T>
