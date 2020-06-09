@@ -1,6 +1,16 @@
 #pragma once
 #include <vector>
 using std::vector;
+template <typename T,typename F>
+class Pair {
+	T first;
+	F second;
+public:
+	Pair(T _first,F _second) {
+		first = _first;
+		second = _second;
+	}
+};
 template <typename T>
 class NodeInterface {
 	

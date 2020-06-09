@@ -22,4 +22,7 @@ class CLoudStorage{
 	Catalog catalog;
 	File file;
 	Revision revision;
+	bool operator <(const CLoudStorage& other) {
+		return user < other.user;
+	}
 }

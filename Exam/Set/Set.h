@@ -82,6 +82,10 @@ inline Set<T> Set<T>::operator^(const Set<T>& other) const
 	Set<T> result;
 	vector<T> others = container->get_all_values();
 	for (int i = 0; i < others.size(); i++) {
+		result.container->insert(others[i]);
+	}
+	others = container->get_all_values();
+	for (int i = 0; i < others.size(); i++) {
 		if (!other.include(others[i]))
 			result.container->remove(others[i]);
 	}

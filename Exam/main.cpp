@@ -12,11 +12,12 @@ int main() {
 	}
 	set1.show();
 	Set<int> set2(new AVLTreeContainer<int>);
-	for (int i = 5; i < 10; i++) {
+	for (int i = 5; i < 15; i++) {
 		set2.insert(i);
 	}
 	set2.show();
-	Set<int> set3 = set1 / set2;
+	Set<int> set3=set1^set2;
+	set1.show();
 	set3.show();
 	/*for (int i = 0; i < 10; i++) {
 		hash.remove(i);
